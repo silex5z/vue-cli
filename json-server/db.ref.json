@@ -1,0 +1,36 @@
+{  
+  "users":[  
+     {  
+        "id":1,
+        "unm":"sean"
+     }
+  ],
+  "todos":[  
+     {  
+        "id":1,
+        "name":"list1",
+        "items":[  
+           {  
+              "title":"asd",
+              "descrp":"asd"
+           }
+        ],
+        "userId":1
+     },
+    {  
+        "id":2,
+        "name":"list2",
+        "items":[  
+           {  
+              "title":"Book",
+              "descrp":"Read Outliers"
+           },
+           {  
+              "title":"sadasd",
+              "descrp":"Reassasdasdasdssliers"
+           }
+        ],
+        "userId":1
+     }
+  ]
+}
