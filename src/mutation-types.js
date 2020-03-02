@@ -1,3 +1,4 @@
+// Todo
 export const EDIT_TODO = 'EDIT_TODO'
 export const ADD_TODO = 'ADD_TODO'
 export const DELETE_TODO = 'DELETE_TODO'
@@ -5,3 +6,20 @@ export const EDIT_MODE = 'EDIT_MODE'
 export const ADD_MODE = 'ADD_MODE'
 export const CTRL_STATUS = 'CTRL_STATUS'
 export const GET_LIST = 'GET_LIST'
+
+
+// PGV
+export const SET_MODE = 'SET_MODE'
+export const SET_MOVIE = 'SET_MOVIE'
+export const SET_DATE = 'SET_DATE'
+export const SET_THEATRE = 'SET_THEATRE'
+export const SET_MOVIE_NAME = 'SET_MOVIE_NAME'
+export const SET_MOVIE_ID = 'SET_MOVIE_ID'
+export const SET_SEAT_LIST = 'SET_SEAT_LIST'
+export const ADD_SELECTED_SEAT = 'ADD_SELECTED_SEAT'
+export const REMOVE_SEAT = 'REMOVE_SEAT'
+export const RESET_SELECTED_SEAT = 'RESET_SELECTED_SEAT'
+export const FETCH_HISTORY = 'FETCH_HISTORY'
+export const CLOSE_DIALOG = 'CLOSE_DIALOG'
+export const SET_MY_HISTORY = 'SET_MY_HISTORY'
+export const SET_USER = 'SET_USER'

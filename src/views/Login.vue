@@ -8,7 +8,14 @@
           <v-card-title>
             Login
           </v-card-title>
+          <v-divider></v-divider>
+          <v-card-text>
+            test@email.com : aaaaaa <br/>
+            test1@email.com : aaaaaa <br/>
+            pen123@email.com : aaaaaa
+          </v-card-text>
         </v-card>
+        
 
         <v-flex mt-4>
           <label for="">ID</label>

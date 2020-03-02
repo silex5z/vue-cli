@@ -1,5 +1,6 @@
 import axios from 'axios'
 import db from '../firebase'
+import * as Types from '../mutation-types'
 
 export default {
   state: {
@@ -20,8 +21,8 @@ export default {
     // 영화관 선택 후 예매 가능 날짜 목록
     availableDate(state) {
       return state.movies.reduce(function (acc, cur) {
-        if (acc.indexOf(cur.date) < 0) {
-          acc.push(cur.date)
+        if (acc.indexOf(cur.dateId) < 0) {
+          acc.push(cur.dateId)
         }
         return acc
       }, [])
@@ -33,7 +34,7 @@ export default {
         if (state.pgvMode) { // 영화관 -> 날짜 선택 후 가능 영화 목록
           return el.theatreId == state.pgvTheatre
         } else { // 날짜 -> 영화관 선택 후 가능 영화 목록
-          return el.date == state.pgvDate
+          return el.dateId == state.pgvDate
         }
       }).reduce(function (acc, cur) {
         if (acc.indexOf(cur.movieName) < 0) {
@@ -49,7 +50,7 @@ export default {
         if (state.pgvMode) { // 영화관 -> 날짜 선택 후 가능 영화 목록
           return el.theatreId == state.pgvTheatre
         } else { // 날짜 -> 영화관 선택 후 가능 영화 목록
-          return el.date == state.pgvDate
+          return el.dateId == state.pgvDate
         }
       }).filter(el => {
         return el.movieName == state.pgvMovie
@@ -74,35 +75,35 @@ export default {
   },
 
   mutations: {
-    setMode(state, boolean) {
+    [Types.SET_MODE](state, boolean) {
       state.pgvMode = boolean
     },
-    setMovies(state, movies) {
+    [Types.SET_MOVIE](state, movies) {
       // console.log(movies)
       state.movies = movies
     },
-    setDate(state, date) {
+    [Types.SET_DATE](state, date) {
       state.pgvDate = date
     },
-    setTheatre(state, theatreId) {
+    [Types.SET_THEATRE](state, theatreId) {
       state.pgvTheatre = theatreId
     },
-    setMovieName(state, name) {
+    [Types.SET_MOVIE_NAME](state, name) {
       state.pgvMovie = name
     },
-    setMovieId(state, id) {
+    [Types.SET_MOVIE_ID](state, id) {
       state.pgvMovieId = id
     },
-    setSeatList(state, seatList) {
+    [Types.SET_SEAT_LIST](state, seatList) {
       state.pgvSeatList = seatList
     },
-    addSelectedSeat(state, { row, col }) {
+    [Types.ADD_SELECTED_SEAT](state, { row, col }) {
       state.pgvSelectedSeats.push(row + '-' + col)
     },
-    removeSeat(state, { row, col }) {
+    [Types.REMOVE_SEAT](state, { row, col }) {
       state.pgvSelectedSeats.splice(state.pgvSelectedSeats.indexOf([row + '-' + col][0]), 1)
     },
-    resetSelectedSeat(state){
+    [Types.RESET_SELECTED_SEAT](state){
       state.pgvSelectedSeats = []
     },
     /* setSeatBooked(state, { movieId, userSeats, userId }) {
@@ -122,16 +123,16 @@ export default {
         }
       })
     }, */
-    fetchHistory(state, history) {
+    [Types.FETCH_HISTORY](state, history) {
       state.myHistory = history;
     },
-    closeDialog(state, bl){
+    [Types.CLOSE_DIALOG](state, bl){
       state.dialog = bl
     },
-    setMyHistory(state, history){
+    [Types.SET_MY_HISTORY](state, history){
       state.myHistory = history
     },
-    setUser(state, user) {
+    [Types.SET_USER](state, user) {
       state.pgvUser = user
     }
   },
@@ -165,7 +166,7 @@ export default {
           return movieData
         })
         // console.log(movies)
-        commit('setMovies', movies)
+        commit('SET_MOVIE', movies)
       })
     },
     setSeatBooked({ commit }, { movieId, userSeats, userId }) {
@@ -177,6 +178,7 @@ export default {
     getHistory({ commit, state }) {
       db.collection('pgv').get().then(querySnapshot => {
         let tmpList = []
+        console.log(querySnapshot)
         querySnapshot.forEach(doc => {
           let temp = doc.data()
           temp.id = doc.id
@@ -201,7 +203,7 @@ export default {
         },[])
 
         
-        commit('setMyHistory', result)
+        commit('SET_MY_HISTORY', result)
           /* Object.values(doc.data().seats[0]).reduce((acc, cur)=>{
             console.log(cur)
           }) */
@@ -234,7 +236,7 @@ export default {
 
     getSeatList({ commit, state }) {
       db.collection('pgv').doc(state.pgvMovieId).get().then(querySnapshot => {
-        commit('setSeatList', querySnapshot.data().seats[0])
+        commit('SET_SEAT_LIST', querySnapshot.data().seats[0])
       }).catch(err => console.log(err))
     },
 

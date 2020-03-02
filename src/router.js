@@ -75,12 +75,24 @@ let router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: '/relay',
+      name: 'relay',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "users" */ './views/WordRelay.vue'),
+      meta: {
+        requiresAuth: false
+      }
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   // check for requireAuth guard
+  console.log(to)
   if(to.matched.some(record => record.meta.requiresAuth)) {
     // check if not logged in 
     if(!firebase.auth().currentUser) {

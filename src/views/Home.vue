@@ -48,19 +48,19 @@ export default {
     },
     myList: {
       get() {
-        return this.$store.state.todoList
+        return this.$store.state.todos.todoList
       },
       set(value) {
         this.$store.dispatch('updateList', value)
       }
     },
-    ...mapState(["todoList", "editIdx"])
+    ...mapState('todos',['todoList', 'editIdx'])
   },
   methods: {
     ...mapActions({ getList: types.GET_LIST })
   },
-  mounted() {1
-    // this.getList();
+  mounted() {
+    this.getList();
   }
 };
 </script>
