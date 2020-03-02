@@ -265,7 +265,7 @@
 <script>
 import { mapActions, mapState, mapGetters } from "vuex";
 import firebase from "firebase";
-import * as Types from "../mutation-types";
+// import * as Types from "../mutation-types";
 
 export default {
   data: function() {
@@ -301,7 +301,7 @@ export default {
     ]),
 
     countAvailableSeats() {
-      if (this.pgvSeatList) {
+     if (this.pgvSeatList) {
         return Object.values(this.pgvSeatList).reduce(function(acc, cur) {
           cur.map(function(val) {
             val == false ? acc++ : acc;
@@ -314,6 +314,8 @@ export default {
           });
           return acc;
         }, 0) */
+      } else {
+        return []
       }
     },
 
