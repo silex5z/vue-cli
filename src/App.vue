@@ -17,6 +17,11 @@ export default {
     return {
       test: true
     }
+  },
+  methods: {
+    foo(){
+      console.log('rebase test')
+    }
   }
 }
 </script>
