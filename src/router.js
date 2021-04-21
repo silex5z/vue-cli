@@ -92,7 +92,7 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   // check for requireAuth guard
-  console.log(to)
+  // console.log(to)
   if(to.matched.some(record => record.meta.requiresAuth)) {
     // check if not logged in 
     if(!firebase.auth().currentUser) {
