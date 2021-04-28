@@ -41,3 +41,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### pr test 01
 
 ### merge test 01
+
+### git rebase test
+
+latest
