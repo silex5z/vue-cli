@@ -39,3 +39,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### rebase test 06
 
 ### pr test 01
+
+### merge test 01
